@@ -1,0 +1,12 @@
+<mat-grid-list cols="3" rowHeight="400px">
+  <mat-grid-tile *ngFor="let dog of dogs">
+    <mat-card>
+      <img mat-card-image [src]="dog.image" alt="{{ dog.name }} image">
+      <mat-card-content>
+        <h2 mat-card-title>{{ dog.name }}</h2>
+        <p mat-card-subtitle>{{ dog.breed }}</p>
+        <p>{{ dog.weight }}, {{ dog.height }}</p>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

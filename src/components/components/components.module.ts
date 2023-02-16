@@ -6,22 +6,30 @@ import { FooterComponent } from '../footer/footer.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { DogsContainerComponent } from './dogs-container/dogs-container.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   imports: [
     CommonModule,
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatGridListModule,
+    MatCardModule
+
   ],
   declarations: [
     ComponentsComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    DogsContainerComponent
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    DogsContainerComponent
   ]
 })
 export class ComponentsModule { }
