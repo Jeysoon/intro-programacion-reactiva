@@ -1,6 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
-import { map } from 'rxjs';
+import { map, Subscription } from 'rxjs';
 import { DogService } from 'src/app/services/dog.service';
 import { Dog } from '../dogs-container/dogs-container.component';
 
@@ -9,8 +9,10 @@ import { Dog } from '../dogs-container/dogs-container.component';
   templateUrl: './size-selector.component.html',
   styleUrls: ['./size-selector.component.css']
 })
-export class SizeSelectorComponent implements OnInit {
+export class SizeSelectorComponent implements OnInit, OnDestroy {
   sizes: string[] = [];
+  allDogs: Subscription | undefined;
+  filteredDogs: Subscription | undefined;
   @Output() dogs = new EventEmitter();
   constructor(private dogService: DogService) {
     this.dogService.getDogs().pipe(map((dog: Dog[]) => {
@@ -23,14 +25,18 @@ export class SizeSelectorComponent implements OnInit {
   ngOnInit() {
 
   }
+  ngOnDestroy(): void {
+    this.allDogs?.unsubscribe();
+    this.filteredDogs?.unsubscribe();
+  }
   onSelect(event: MatSelectChange){
     if(event.value === 'All'){
-      this.dogService.getDogs().subscribe((dogData) => {
+    this.allDogs =  this.dogService.getDogs().subscribe((dogData) => {
         console.log('dogDatonma', dogData)
         this.dogService._dogs.next(dogData);
       })
     } else {
-      this.dogService.getDogs().pipe(
+    this.filteredDogs =  this.dogService.getDogs().pipe(
         map((dogs: Dog[]) => {
           console.log('DOGS', dogs);
          return dogs.filter(dog => dog.size.toLowerCase() === event.value.toLowerCase())
