@@ -21,7 +21,7 @@ export class DogsContainerComponent implements OnInit {
   constructor(private dogService: DogService, private breakpointObserver: BreakpointObserver) {
     // detect screen size changes
     this.breakpointObserver.observe([
-      "(max-width: 390px)"
+      "(max-width: 500px)"
     ]).subscribe((result: BreakpointState) => {
       console.log('result', result);
       if (result.matches) {
