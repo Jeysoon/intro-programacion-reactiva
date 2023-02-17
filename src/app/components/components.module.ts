@@ -9,7 +9,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { DogsContainerComponent } from './dogs-container/dogs-container.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
-
+import { SizeSelectorComponent } from './size-selector/size-selector.component';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   imports: [
     CommonModule,
@@ -18,18 +19,21 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatGridListModule,
     MatCardModule,
+    MatSelectModule
 
   ],
   declarations: [
     ComponentsComponent,
     HeaderComponent,
     FooterComponent,
-    DogsContainerComponent
+    DogsContainerComponent,
+    SizeSelectorComponent
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     DogsContainerComponent,
+    SizeSelectorComponent
   ]
 })
 export class ComponentsModule { }

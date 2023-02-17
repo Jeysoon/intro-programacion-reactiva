@@ -10,3 +10,8 @@
 .desktop{
   width: 200px;
 }
+.size-selector{
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}

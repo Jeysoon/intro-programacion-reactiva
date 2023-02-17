@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DogService } from 'src/app/services/dog.service';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { filter, map, Observable, tap } from 'rxjs';
 
 export interface Dog {
   image: string;
@@ -8,6 +9,7 @@ export interface Dog {
   name: string;
   weight: string;
   height: string;
+  size: string;
 }
 
 @Component({
@@ -16,8 +18,10 @@ export interface Dog {
   styleUrls: ['./dogs-container.component.css'],
 })
 export class DogsContainerComponent implements OnInit {
-  dogs$: any;
+  dogs$: Observable<Dog[]>;
   columns: number = 3;
+  sizes: string[] = [];
+  hel:any;
   constructor(private dogService: DogService, private breakpointObserver: BreakpointObserver) {
     // detect screen size changes
     this.breakpointObserver.observe([
@@ -32,10 +36,15 @@ export class DogsContainerComponent implements OnInit {
           this.columns = 3
       }
     });
+    this.dogs$ = this.dogService.getDogsFromBehaviorSubject();
+    this.dogService.getDogsFromBehaviorSubject().subscribe((data) => {
+      this.hel = data;
+    })
+
   }
 
   ngOnInit() {
-   this.dogs$ = this.dogService.getDogs();
+
    this.dogService.getDogs().subscribe((dog: any) => console.log('Dog', dog))
   }
 }
