@@ -16,7 +16,7 @@ export class SizeSelectorComponent implements OnInit {
     this.dogService.getDogs().pipe(map((dog: Dog[]) => {
       return dog.map((dog: Dog) => dog.size)
     })).subscribe((data) => {
-      this.sizes = [...new Set(data)];
+      this.sizes = [...new Set(['All',...data])];
     });
   }
 
@@ -24,6 +24,12 @@ export class SizeSelectorComponent implements OnInit {
 
   }
   onSelect(event: MatSelectChange){
+    if(event.value === 'All'){
+      this.dogService.getDogs().subscribe((dogData) => {
+        console.log('dogDatonma', dogData)
+        this.dogService._dogs.next(dogData);
+      })
+    } else {
       this.dogService.getDogs().pipe(
         map((dogs: Dog[]) => {
           console.log('DOGS', dogs);
@@ -34,6 +40,7 @@ export class SizeSelectorComponent implements OnInit {
         this.dogService._dogs.next(dogData);
         // this.dogs.emit(dogData);
       })
+    }
   }
 
 }

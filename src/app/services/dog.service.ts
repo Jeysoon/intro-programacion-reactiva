@@ -54,7 +54,7 @@ _dogs = new BehaviorSubject([
     name: 'Rufus',
     weight: '17-23 lbs',
     height: '13.5-16.5 inches',
-    size: 'Small'
+    size: 'Medium'
   },
   {
     image: 'https://cdn.pixabay.com/photo/2023/01/24/13/17/animal-7741005_960_720.jpg',
@@ -139,7 +139,7 @@ constructor() {
       name: 'Rufus',
       weight: '17-23 lbs',
       height: '13.5-16.5 inches',
-      size: 'Small'
+      size: 'Medium'
     },
     {
       image: 'https://cdn.pixabay.com/photo/2023/01/24/13/17/animal-7741005_960_720.jpg',
