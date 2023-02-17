@@ -4,3 +4,9 @@
   height: 200px;
   object-fit: cover; /* Make sure the images fill the container without distorting their aspect ratio */
 }
+.small-devices{
+  width: 70vw;
+}
+.desktop{
+  width: 200px;
+}
